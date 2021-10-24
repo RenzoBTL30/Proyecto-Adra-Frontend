@@ -1,3 +1,5 @@
+/*Navbar donde sale la imagen de ADRA (del LOGIN)*/
+
 .navbar{
     padding-left: 30px;
     padding-right: 30px;
@@ -11,6 +13,9 @@
     margin-left: 35px;
 }
 
+/*Navbar donde sale la imagen de ADRA (del sistema mismo)*/
+
+
 
 a{
     text-decoration: none;
@@ -21,6 +26,8 @@ a{
     text-decoration: none;
     color: black;
 }
+
+
 
 
 #cinta-opciones{
