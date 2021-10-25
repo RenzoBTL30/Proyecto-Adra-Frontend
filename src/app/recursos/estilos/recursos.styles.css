@@ -14,7 +14,19 @@
 a{
     text-decoration: none;
     color: white;
+}
+
+.boton{
     cursor: pointer;
+    padding: 8px 15px;
+}
+
+.boton a {
+    text-align: center;
+}
+
+.boton:hover{
+    background-color: rgb(158, 160, 160);
 }
 
 .descripcion h5{
@@ -60,8 +72,13 @@ a{
     color: white;
     font-size: 20px;
     text-align: right;
-    padding: 10px;
     padding-right: 20px;
+    padding-left: 20px;
     width: 100%;
     z-index: 2;
+}
+
+#user{
+    font-size: 20px;
+    color: white;
 }

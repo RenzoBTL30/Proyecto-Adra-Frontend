@@ -1,0 +1,27 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+
+
+#lista-modulos{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    column-gap: 25px;
+    row-gap: 25px;
+}
+
+.zoom{
+    cursor: pointer;
+    transition: transform .5s;
+}
+
+.zoom:hover{
+    transform: scale(1.1);
+}
+
+
+

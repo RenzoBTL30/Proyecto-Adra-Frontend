@@ -10,6 +10,9 @@ import { AnunciosComponent } from './views/anuncios/anuncios.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    AnunciosComponent
   ]
 })
 export class AnunciosModule { }
