@@ -22,7 +22,7 @@ import { MenuprincipalRoutingModule } from './menu-principal-routing.module';
     AnunciosModule,
     SeminariosModule,
     HistorialModulosModule,
-    MenuprincipalRoutingModule,
+    MenuprincipalRoutingModule
   ],
   exports: [
     PageMenu1Component

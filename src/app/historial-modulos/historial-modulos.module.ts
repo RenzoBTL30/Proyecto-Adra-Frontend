@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HistorialModulosComponent } from './view/historial-modulos/historial-modulos.component';
+import { RecursosModule } from '../recursos/recursos.module';
 
 
 @NgModule({
@@ -8,7 +9,8 @@ import { HistorialModulosComponent } from './view/historial-modulos/historial-mo
     HistorialModulosComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RecursosModule
   ],
   exports: [
     HistorialModulosComponent

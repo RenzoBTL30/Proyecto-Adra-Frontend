@@ -4,6 +4,7 @@ import { PageSesionComponent } from './presentation/pages/page-sesion/page-sesio
 import { SesionComponent } from './presentation/views/sesion/sesion.component';
 import { ModulosModule } from '../modulos/modulos.module';
 import { EvaluacionComponent } from './presentation/views/evaluacion/evaluacion/evaluacion.component';
+import { RecursosModule } from '../recursos/recursos.module';
 
 
 
@@ -15,7 +16,8 @@ import { EvaluacionComponent } from './presentation/views/evaluacion/evaluacion/
   ],
   imports: [
     CommonModule,
-    ModulosModule
+    ModulosModule,
+    RecursosModule
   ],
   exports:[
     PageSesionComponent
