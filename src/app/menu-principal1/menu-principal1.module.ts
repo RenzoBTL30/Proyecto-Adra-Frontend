@@ -7,22 +7,26 @@ import { ModulosModule } from '../modulos/modulos.module';
 import { AnunciosModule } from '../anuncios/anuncios.module';
 import { SeminariosModule } from '../seminarios/seminarios.module';
 import { HistorialModulosModule } from '../historial-modulos/historial-modulos.module';
-import { MenuprincipalRoutingModule } from './menu-principal-routing.module';
+import { SeminariosComponent } from '../seminarios/view/seminarios/seminarios.component';
+import { SesionesModule } from "../sesiones/sesiones.module";
+import { PrincipalModule } from '../principal/principal.module';
 
 
 @NgModule({
   declarations: [
     PageMenu1Component,
-    Menu1Component
+    Menu1Component,
   ],
   imports: [
     CommonModule,
-    RecursosModule,
     ModulosModule,
+    RecursosModule,
     AnunciosModule,
     SeminariosModule,
+    SesionesModule,
     HistorialModulosModule,
-    MenuprincipalRoutingModule
+    PrincipalModule,
+
   ],
   exports: [
     PageMenu1Component

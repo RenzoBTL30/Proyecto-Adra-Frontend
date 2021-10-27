@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BarrasuperiorComponent } from './barra-superior-usuario/barrasuperior.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PedidosOracionModule } from '../pedidos-oracion/pedidos-oracion.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { PedidosOracionModule } from '../pedidos-oracion/pedidos-oracion.module'
   ],
   imports: [
     CommonModule,
-    PedidosOracionModule
+    PedidosOracionModule,
+    RouterModule
   ],
   exports: [
     BarrasuperiorComponent,
