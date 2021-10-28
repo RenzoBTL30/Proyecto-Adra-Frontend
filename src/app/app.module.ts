@@ -29,7 +29,9 @@ const routes : Routes = [
 
   {path: 'moduloasesor',
     loadChildren: () => import('./modulo-asesor/modulo-asesor.module').then((m) => m.ModuloAsesorModule)},
-  {path: '**', component:PageLoginComponent}
+  
+  
+    {path: '**', component:PageLoginComponent}
   
 ]
 
