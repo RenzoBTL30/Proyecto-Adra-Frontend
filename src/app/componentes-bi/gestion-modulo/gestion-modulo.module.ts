@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { GestionModuloRoutingModule } from './gestion-modulo-routing.module';
 import { GestionModuloComponent } from './views/gestion-modulo/gestion-modulo.component';
-import { GestionSesionComponent } from './views/gestion-sesion/gestion-sesion/gestion-sesion.component';
+import { GestionSesionComponent } from './views/gestion-sesion/gestion-sesion.component';
+import { RecursosModule } from 'src/app/recursos/recursos.module';
 
 
 @NgModule({
@@ -13,7 +14,12 @@ import { GestionSesionComponent } from './views/gestion-sesion/gestion-sesion/ge
   ],
   imports: [
     CommonModule,
-    GestionModuloRoutingModule
+    GestionModuloRoutingModule,
+    RecursosModule
+  ],
+  exports: [
+    GestionModuloComponent,
+    GestionSesionComponent
   ]
 })
 export class GestionModuloModule { }

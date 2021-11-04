@@ -1,35 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-
-a{
-    text-decoration: none;
-    color: white;
-}
-
-#fondo{
-    padding-top: 65px;
-    background-color: rgb(231, 230, 225);
-}
-
-.espacio-trabajo{
-    margin-top: 50px;
-}
-
-
-
 .sidebar {
-    position: fixed;
     top: 92px;
     left: 0;
+    position: fixed;
     height: 100%;
     width: 260px;
     background: #0f5c49;
-    z-index: 100;
+    z-index: 0;
     transition: all 0.5s ease;
-}
-
-.sidebar.close {
-    width: 78px;
 }
 
 .sidebar .logo-details {
@@ -124,7 +101,7 @@ a{
 .sidebar .nav-links li a .link_name {
     font-size: 18px;
     font-weight: 400;
-    color: #fff;
+    color: white;
     transition: all 0.4s ease;
 }
 
@@ -259,8 +236,11 @@ a{
 
 .home-section {
     position: relative;
+    background: #E4E9F7;
+    height: 100vh;
     left: 260px;
-    padding: 20px;
+    top: 92px;
+    padding: 10px;
     width: calc(100% - 260px);
     transition: all 0.5s ease;
 }
@@ -271,11 +251,10 @@ a{
 }
 
 .home-content {
-    padding: 25px;
+    padding: 10px;
     align-items: center;
     border-radius: 10px;
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .home-section .home-content .bx-menu,
@@ -300,26 +279,21 @@ a{
     }
 }
 
-.cabeza {
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-.cabecera2 {
-    width: 100%;
-    display: flex;
+.accordion-button{
+    background-color: transparent;
     color: white;
-    justify-content: space-between;
-    background-color: #9c1111;
-    padding: 0 10px 0 10px;
+
 }
 
-.cabecera {
-    width: 100%;
-    position: fixed;
-    z-index: 999;
+a{
+    text-decoration: none;
+    color: white;
 }
 
-.centro {
-    display: flex;
+.accordion-button{
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    list-style: none;
 }

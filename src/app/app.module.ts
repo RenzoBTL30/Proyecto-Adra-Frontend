@@ -13,6 +13,7 @@ import { RecursosModule } from './recursos/recursos.module';
 import { PageSesionComponent } from './sesiones/presentation/pages/page-sesion/page-sesion.component';
 import { SesionesModule } from './sesiones/sesiones.module';
 
+
 const routes : Routes = [
   {path: '', component:PageLoginComponent},
   
@@ -30,8 +31,10 @@ const routes : Routes = [
   {path: 'moduloasesor',
     loadChildren: () => import('./modulo-asesor/modulo-asesor.module').then((m) => m.ModuloAsesorModule)},
   
+  {path: 'menuprincipalbi',
+    loadChildren: () => import('./componentes-bi/menu-inicio/menu-inicio.module').then((m) => m.MenuInicioModule)},
   
-    {path: '**', component:PageLoginComponent}
+  {path: '**', component:PageLoginComponent}
   
 ]
 
