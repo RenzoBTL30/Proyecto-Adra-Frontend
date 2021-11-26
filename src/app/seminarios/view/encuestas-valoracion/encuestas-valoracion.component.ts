@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EncuestasValoracionComponent implements OnInit {
 
+  contador = 0;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onKey(event: any){
+    this.contador = event.target.value.length;
   }
 
 }

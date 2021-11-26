@@ -5,15 +5,9 @@ import { GestionModuloComponent } from '../gestion-modulo/views/gestion-modulo/g
 import { MenuInicioComponent } from './view/menu-inicio/menu-inicio.component';
 
 
-const routes: Routes = [
-    {path: 'inicio', component:MenuInicioComponent},
-    {path: 'modulos', component:GestionModuloComponent},
-
-  ];
-  
   @NgModule({
     imports: [
-        RouterModule.forChild(routes),
+        RouterModule,
     ],
     exports: [RouterModule]
   })

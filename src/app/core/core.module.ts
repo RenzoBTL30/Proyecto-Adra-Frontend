@@ -4,6 +4,8 @@ import { PageLoginComponent } from './presentation/pages/page-login/page-login.c
 import { LoginComponent } from './presentation/views/login/login.component';
 import { RecursosModule } from '../recursos/recursos.module';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RecursosModule,
-    RouterModule
+    HttpClientModule,
+    RouterModule,
+    FormsModule
   ],
   exports: [
     PageLoginComponent

@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionModuloComponent implements OnInit {
 
-  constructor() { }
+  contador = 0;
+
+  constructor() {
+    
+   }
 
   ngOnInit(): void {
+    
   }
 
+  onKey(event: any){
+    this.contador = event.target.value.length;
+  }
+
+  
 }

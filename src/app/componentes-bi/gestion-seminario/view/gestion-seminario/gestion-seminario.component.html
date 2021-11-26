@@ -1,1 +1,155 @@
-<p>gestion-seminario works!</p>
+<div class="home-content">
+    <div>
+        <i class="fa fas fa-file-alt icon_right fa-2x fa-border cuadroicon" aria-hidden="true"></i>&nbsp;<b style="font-size: x-large;">Capacitaciones</b>
+        <div class="centro1">
+            <div class="modulo">
+                <h4 style="text-align: center;">SEMINARIOS</h4>
+            </div>
+            <div class="col-sm-4" id="busca">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="name" placeholder="Buscar">
+                </div>
+            </div>
+            <div class="boton">
+                <button href="#" data-bs-toggle="modal" data-bs-target="#crearseminario" class="btn btn-primary">+ Crear
+                    nuevo seminario</button>
+            </div>
+        </div>
+
+        <table class="table table-bordered" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Tema</th>
+                  <th scope="col">Fecha inicio</th>
+                  <th scope="col">Fecha cierre</th>
+                  <th scope="col">URL</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-sm" style="background-color: blue;"><i class="fas fa-external-link-alt"></i></button>
+                    </td>
+                    <td>
+                        <button style="margin-left: 10px;" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
+                        <button style="margin-left: 10px;" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-borrar"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+    </div>
+</div>
+
+<div class="modal fade" id="crearseminario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Crear nuevo seminario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tema:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
+                    <div class="col-sm-10">
+                      <input type="date" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Hora inicio:</label>
+                    <div class="col-sm-10">
+                      <input type="time" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
+                    <div class="col-sm-10">
+                      <input type="date" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Hora fin:</label>
+                    <div class="col-sm-10">
+                      <input type="time" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+                
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-borrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que desea eliminar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

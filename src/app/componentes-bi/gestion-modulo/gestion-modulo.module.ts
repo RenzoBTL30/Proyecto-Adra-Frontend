@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { GestionModuloRoutingModule } from './gestion-modulo-routing.module';
 import { GestionModuloComponent } from './views/gestion-modulo/gestion-modulo.component';
 import { GestionSesionComponent } from './views/gestion-sesion/gestion-sesion.component';
-import { RecursosModule } from 'src/app/recursos/recursos.module';
 
 
 @NgModule({
@@ -15,7 +13,6 @@ import { RecursosModule } from 'src/app/recursos/recursos.module';
   imports: [
     CommonModule,
     GestionModuloRoutingModule,
-    RecursosModule
   ],
   exports: [
     GestionModuloComponent,

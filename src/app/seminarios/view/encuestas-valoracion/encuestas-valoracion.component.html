@@ -7,10 +7,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Cupiditate quos iusto velit
-                    consequuntur culpa in ea provident at quia reiciendis eius
-                    ipsum repudiandae nihil autem minima omnis voluptatibus, maiores fugiat.
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label label-bold">Comentario:</label>
+                        <textarea maxlength="100" class="form-control" id="exampleFormControlTextarea1"
+                            (keyup)="onKey($event)"></textarea>
+                        <p id="contador-caract" style="margin-top: 5px; text-align: right;">{{contador}}/100</p>
+                    </div>
                     <div class="escala-valoracion">
                         <div>
                             <a href="" data-bs-dismiss="modal">
@@ -53,6 +55,7 @@
                 </div>
                 <div class="modal-footer" style="justify-content: center;">
                     <h4>¡Gracias por tu valoración!</h4>
+                    <button type="button" class="btn btn-primary">Enviar</button>
                 </div>
             </div>
         </div>

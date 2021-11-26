@@ -10,6 +10,9 @@ import { GestionSeminarioComponent } from './view/gestion-seminario/gestion-semi
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    GestionSeminarioComponent
   ]
 })
 export class GestionSeminarioModule { }

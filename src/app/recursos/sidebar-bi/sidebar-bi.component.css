@@ -297,3 +297,27 @@ a{
     border: none;
     list-style: none;
 }
+
+.capacitaciones{
+    color: white;
+}
+
+.sidebar .nav-links li .capacitaciones {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.sidebar .nav-links li .capacitaciones .link_name {
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    transition: all 0.4s ease;
+}
+.sidebar .nav-links li .sub-menu .capacitaciones {
+    color: #fff;
+    font-size: 15px;
+    padding: 5px 0;
+    white-space: nowrap;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}

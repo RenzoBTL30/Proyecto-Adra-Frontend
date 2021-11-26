@@ -12,6 +12,7 @@ import { ModuloasesorRoutingModule } from './modulo-asesor-routing.module';
     PageModuloAsesorComponent,
     ModuloAsesorComponent,
     TablaPedidoOracionComponent,
+    
   ],
   imports: [
     CommonModule,

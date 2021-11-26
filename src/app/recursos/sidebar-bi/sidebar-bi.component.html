@@ -1,7 +1,7 @@
 <div class="sidebar">
     <ul class="nav-links">
         <li>
-            <a href="#">
+            <a [routerLink]="['/menuprincipal2/inicio']">
                 <i class="bx fas fa-home"></i>
                 <span class="link_name">Inicio</span>
             </a>
@@ -11,20 +11,20 @@
         </li>
         <li>
             <div class="iocn-link">
-                <a href="#">
+                <div class="capacitaciones">
                     <i class="bx fas fa-file-alt"></i>
                     <span class="link_name">Capacitaciones</span>
-                </a>
+                </div>
                 <i class="accordion-button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree"></i>
             </div>
             
             <ul class="sub-menu accordion-body" id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                <li ><a [routerLink]="['/menuprincipalbi/modulos']" style="margin-left: 45px; color: rgb(219, 219, 219);">Módulos</a></li>
-                <li ><a href="#" style="margin-left: 45px; color: rgb(219, 219, 219);">Seminarios</a></li>
+                <li ><a [routerLink]="['/menuprincipal2/modulos']" style="margin-left: 45px; color: rgb(219, 219, 219);">Módulos</a></li>
+                <li ><a [routerLink]="['/menuprincipal2/seminarios']" style="margin-left: 45px; color: rgb(219, 219, 219);">Seminarios</a></li>
             </ul>
         </li>
         <li>
-            <a href="#">
+            <a [routerLink]="['/menuprincipal2/anuncios']">
                 <i class="bx fas fa-bullhorn"></i>
                 <span class="link_name">Crear Anuncio</span>
             </a>
@@ -33,7 +33,7 @@
             </ul>
         </li>
         <li>
-            <a href="#">
+            <a [routerLink]="['/menuprincipal2/reportes']">
                 <i class="bx fas fa-table"></i>
                 <span class="link_name">Generar Reporte</span>
             </a>
