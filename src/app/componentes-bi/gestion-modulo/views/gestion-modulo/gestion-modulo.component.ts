@@ -54,7 +54,7 @@ export class GestionModuloComponent implements OnInit {
         this.limpiar();
       }
     );
-    Swal.fire('Completado', `El modulo ha sido creado satisfactoriamente`, 'success')
+    Swal.fire('Completado', `El modulo ha sido creado correctamente`, 'success')
   }
 
   listar(){
@@ -73,8 +73,8 @@ export class GestionModuloComponent implements OnInit {
     console.log('Delete');
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estás seguro?',
+      text: "Esta operación no podrá ser revertida",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -84,7 +84,7 @@ export class GestionModuloComponent implements OnInit {
       if (result.isConfirmed) {
         Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'El módulo ha sido eliminado correctamente.',
           'success'
         )
         this.capacitacionService.delete(capacitacion).subscribe(
@@ -116,6 +116,6 @@ export class GestionModuloComponent implements OnInit {
         this.listar();
       }
     );
-    Swal.fire('Completado', `El modulo ha sido editado satisfactoriamente`, 'success')
+    Swal.fire('Completado', `El modulo ha sido editado correctamente`, 'success')
   }
 }

@@ -119,8 +119,9 @@ export class GestionSeminarioComponent implements OnInit {
       });
 
       this.listar();
-      Swal.fire('Completado', `El seminario ha sido creado satisfactoriamente`, 'success')
+      Swal.fire('Completado', `El seminario ha sido creado correctamente`, 'success')
   }
+  
   
 
   listar(){
@@ -141,8 +142,8 @@ export class GestionSeminarioComponent implements OnInit {
     console.log('Delete');
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estás seguro?',
+      text: "Esta operación no podrá ser revertida",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -152,7 +153,7 @@ export class GestionSeminarioComponent implements OnInit {
       if (result.isConfirmed) {
         Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'El seminario ha sido eliminado correctamente.',
           'success'
         )
         this.capacitacionService.deleteSeminario(seminario).subscribe(
@@ -260,7 +261,7 @@ export class GestionSeminarioComponent implements OnInit {
       }
     );
     this.listar();
-    Swal.fire('Completado', `El seminario ha sido editado satisfactoriamente`, 'success')
+    Swal.fire('Completado', `El seminario ha sido editado correctamente`, 'success')
   }
   
 }

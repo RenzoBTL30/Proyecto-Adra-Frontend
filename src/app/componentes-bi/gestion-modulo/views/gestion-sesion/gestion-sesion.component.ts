@@ -34,6 +34,10 @@ export class GestionSesionComponent implements OnInit {
   @ViewChild('fech_inicio') fecha_inicio:any;
   @ViewChild('fech_fin') fecha_fin:any;
 
+  @ViewChild('tipo_rec') tipo_rec:any;
+  @ViewChild('nombre_rec') nombre_rec:any;
+  @ViewChild('url_rec') url_rec:any;
+
 
 
   constructor(private capacitacionService: CapacitacionService, private router:Router, private sesionService: SesionService, private recursoService: RecursoService, private tiporec: TiporecursoService, private activatedRouter:ActivatedRoute) { }
@@ -75,7 +79,7 @@ export class GestionSesionComponent implements OnInit {
         );
       }
     );
-    Swal.fire('Completado', `La sesión ha sido creada satisfactoriamente`, 'success')
+    Swal.fire('Completado', `La sesión ha sido creada correctamente`, 'success')
   }
 
   listarSesion(){
@@ -121,15 +125,17 @@ export class GestionSesionComponent implements OnInit {
   }
 
   limpiarRecurso(){
-
+    this.tipo_rec.nativeElement.value = '';
+    this.nombre_rec.nativeElement.value = '';
+    this.url_rec.nativeElement.value = '';
   }
 
   deleteSesion(sesion: Sesion){
     console.log('Delete');
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estás seguro?',
+      text: "Esta operación no podrá ser revertida",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -139,7 +145,7 @@ export class GestionSesionComponent implements OnInit {
       if (result.isConfirmed) {
         Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'La sesión ha sido eliminada correctamente.',
           'success'
         )
         this.sesionService.deleteSesion(sesion).subscribe(
@@ -158,20 +164,45 @@ export class GestionSesionComponent implements OnInit {
   }
 
   editarSesion(){
-
+    this.sesionService.update(this.sesion_edit).subscribe(
+      res=>{
+        this.closebutton2.nativeElement.click()
+        this.listarSesion();
+      }
+    );
+    Swal.fire('Completado', `La sesión ha sido editada correctamente`, 'success')
   }
 
 
   createRecurso(){
+    this.recurso.nu_orden=0;
+    this.recurso.es_recurso='1';
 
+    this.tiporec.getTiposRec().subscribe(data =>{
+      this.tiporecursos=data;
+    });
+
+        this.recursoService.create(this.recurso).subscribe(
+          res=>{
+            this.closebutton3.nativeElement.click()
+            this.listarRecurso();
+            this.limpiarRecurso();
+          }
+        );
+
+      Swal.fire('Completado', `El recurso ha sido creado correctamente`, 'success')
+  }
+
+  enviarSesionID(id:number){
+    this.recurso.sesion.id = id;
   }
 
   deleteRecurso(recurso: Recurso){
     console.log('Delete');
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estás seguro?',
+      text: "Esta operación no podrá ser revertida",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -181,7 +212,7 @@ export class GestionSesionComponent implements OnInit {
       if (result.isConfirmed) {
         Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'El recurso ha sido eliminado correctamente',
           'success'
         )
         this.recursoService.deleteRecurso(recurso).subscribe(
@@ -200,7 +231,13 @@ export class GestionSesionComponent implements OnInit {
   }
 
   editarRecurso(){
-
+    this.recursoService.update(this.recurso_edit).subscribe(
+      res=>{
+        this.closebutton4.nativeElement.click()
+        this.listarRecurso();
+      }
+    );
+    Swal.fire('Completado', `El recurso ha sido modificado correctamente`, 'success')
   }
 
 }

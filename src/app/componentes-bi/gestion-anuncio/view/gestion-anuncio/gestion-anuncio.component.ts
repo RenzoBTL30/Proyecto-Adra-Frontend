@@ -43,7 +43,7 @@ export class GestionAnuncioComponent implements OnInit {
         this.limpiar();
       }
     );
-    Swal.fire('Completado', `El anuncio ha sido creado satisfactoriamente`, 'success')
+    Swal.fire('Completado', `El anuncio ha sido creado correctamente`, 'success')
   }
 
   listar(){
@@ -64,8 +64,8 @@ export class GestionAnuncioComponent implements OnInit {
   delete(anuncio:Anuncio){
     console.log('Delete');
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estás seguro?',
+      text: "Esta operación no podrá ser revertida",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -75,7 +75,7 @@ export class GestionAnuncioComponent implements OnInit {
       if (result.isConfirmed) {
         Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'El anuncio ha sido eliminado correctamente.',
           'success'
         )
         this.anuncioService.delete(anuncio.id).subscribe(
@@ -102,7 +102,7 @@ export class GestionAnuncioComponent implements OnInit {
         this.listar();
       }
     );
-    Swal.fire('Completado', `El anuncio ha sido editado satisfactoriamente`, 'success')
+    Swal.fire('Completado', `El anuncio ha sido editado correctamente`, 'success')
   }
 
 }

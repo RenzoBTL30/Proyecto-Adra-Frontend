@@ -30,7 +30,7 @@
                                 {{s.de_tema}} <br> {{s.fe_inicio | date:'dd-MM-yyyy'}} al {{s.fe_fin | date:'dd-MM-yyyy'}}
                             </span>
                             <div>
-                                <button style="margin-left: 10px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarrecurso">+ Agregar Recurso</button>
+                                <button (click)="enviarSesionID(s.id)" style="margin-left: 10px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarrecurso">+ Agregar Recurso</button>
                                 <button (click)="cargarDatosSesion(s.id)" style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#editarsesion"></i></button>
                                 <button (click)="deleteSesion(s)" style="margin-left: 10px;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                             </div>
@@ -48,7 +48,7 @@
                                                 <h5>{{r.no_recurso}}</h5>
                                             </div>
                                             <div class="col-2">
-                                                <button style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#editarrecurso"></i></button>
+                                                <button (click)="cargarDatosRecurso(r.id)" style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#editarrecurso"></i></button>
                                                 <button (click)="deleteRecurso(r)" style="margin-left: 10px;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                             </div>
                                         </div>
@@ -164,9 +164,9 @@
                 <div class="mb-3 row">
                     <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tipo:</label>
                     <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" [(ngModel)]="recurso.tipo_recurso.id" name="tipo_recurso.id">
                             <option selected></option>
-                            <option *ngFor="let tr of tiporecursos" value={{tr.id}}>{{tr.no_tipo_recurso}}</option>
+                            <option *ngFor="let tr of tiporecursos" ngValue="{{tr.id}}" #tipo_rec>{{tr.no_tipo_recurso}}</option>
                         </select>
                     </div>
                 </div>
@@ -174,14 +174,14 @@
                     <div class="mb-3 row">
                         <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
                         <div class="col-sm-10">
-                          <input [(ngModel)]="recurso.no_recurso" type="text" class="form-control" id="inputNombre" #nombre_rec>
+                          <input [(ngModel)]="recurso.no_recurso" type="text" class="form-control" id="inputNombre" name="no_recurso" #nombre_rec>
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
                         <div class="col-sm-10">
-                          <input [(ngModel)]="recurso.di_url" type="text" class="form-control" id="inputNombre" #url_rec>
+                          <input [(ngModel)]="recurso.di_url" type="text" class="form-control" id="inputNombre" name="di_url" #url_rec>
                         </div>
                     </div>
                     
@@ -190,7 +190,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Agregar</button>
+                <button (click)="createRecurso()" type="button" class="btn btn-primary">Agregar</button>
             </div>
         </div>
     </div>
@@ -208,18 +208,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton4></button>
             </div>
             <div class="modal-body" style="padding: 30px;">
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tipo:</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Default select example" [(ngModel)]="recurso_edit.tipo_recurso.id" name="tipo_recurso.id">
+                            <option selected></option>
+                            <option *ngFor="let tr of tiporecursos" ngValue="{{tr.id}}" #tipo_rec>{{tr.no_tipo_recurso}}</option>
+                        </select>
+                    </div>
+                </div>
                 <div id="cambiable1">
                     <div class="mb-3 row">
                         <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputNombre">
+                          <input [(ngModel)]="recurso_edit.no_recurso" type="text" class="form-control" id="inputNombre">
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputNombre">
+                          <input [(ngModel)]="recurso_edit.di_url" type="text" class="form-control" id="inputNombre">
                         </div>
                     </div>
                     
@@ -228,7 +237,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Agregar</button>
+                <button (click)="editarRecurso()" type="button" class="btn btn-primary">Editar</button>
             </div>
         </div>
     </div>
