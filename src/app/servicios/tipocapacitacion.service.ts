@@ -3,16 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError} from 'rxjs/operators';
-import { Recurso } from '../models/recurso';
+import { Tipo_Capacitacion } from '../models/tipo_capacitacion';
 import { AuthService } from '../core/presentation/views/login/auth.service';
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecursoService {
+export class TipoCapacitacionService {
 
-  private urlrecurso:string ='http://localhost:9292/api/recursos';
+  private urltipocapacitacion:string ='http://localhost:9292/api/tiposcapacitacion';
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
@@ -24,13 +23,14 @@ export class RecursoService {
     return this.httpHeaders;
   }
 
-  getRecursos():Observable<Recurso[]>{
-    return this.http.get<Recurso[]>(this.urlrecurso + '/all', {headers: this.agregarAuthorizationHeader()});    
+  getTiposCap():Observable<Tipo_Capacitacion[]>{
+    return this.http.get<Tipo_Capacitacion[]>(this.urltipocapacitacion + '/all', {headers: this.agregarAuthorizationHeader()});    
   }
-  create(recurso:Recurso):Observable<Recurso>{
-    return this.http.post(this.urlrecurso + '/post', recurso, {headers: this.agregarAuthorizationHeader()})
+
+  create(capacitacion:Tipo_Capacitacion):Observable<Tipo_Capacitacion>{
+    return this.http.post(this.urltipocapacitacion + '/post', capacitacion, {headers: this.agregarAuthorizationHeader()})
     .pipe(
-      map((response: any)=> response.post as Recurso),
+      map((response: any)=> response.post as Tipo_Capacitacion),
       catchError(e =>{
         if(e.status == 400){
           return throwError(e);
@@ -41,17 +41,17 @@ export class RecursoService {
         return throwError(e);
       }));
   }
-  getRecursoId(id:number): Observable<Recurso>{
-    return this.http.get<Recurso>(`${this.urlrecurso}/all/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+  getTiposCapId(id:number): Observable<Tipo_Capacitacion>{
+    return this.http.get<Tipo_Capacitacion>(`${this.urltipocapacitacion}/all/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e=>{
         if(e.status != 401 && e.error.mensaje){
-          
+
         }
         return throwError(0);
       }));
   }
-  update(recurso:Recurso):Observable<any>{
-    return this.http.put<any>(`${this.urlrecurso}/update/${recurso.id}`, recurso, {headers: this.agregarAuthorizationHeader()}).pipe(
+  update(tipo_capacitacion:Tipo_Capacitacion):Observable<any>{
+    return this.http.put<any>(`${this.urltipocapacitacion}/update/${tipo_capacitacion.id}`, tipo_capacitacion, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e =>{
         if(e.status == 400){
           return throwError(e);
@@ -63,10 +63,8 @@ export class RecursoService {
       })
     )
   }
-
-  deleteRecurso(recurso:Recurso):Observable<Recurso>{
-    return this.http.put<any>(`${this.urlrecurso}/delete/${recurso.id}`, recurso, {headers: this.agregarAuthorizationHeader()})
-    .pipe(
+  delete(id:number):Observable<Tipo_Capacitacion>{
+    return this.http.delete<Tipo_Capacitacion>(`${this.urltipocapacitacion}/delete/${id}`).pipe(
       catchError(e =>{
         if(e.error.mensaje){
           console.error(e.error.mensaje);

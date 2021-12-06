@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GestionSeminarioComponent } from './view/gestion-seminario/gestion-seminario.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -9,6 +9,7 @@ import { GestionSeminarioComponent } from './view/gestion-seminario/gestion-semi
     GestionSeminarioComponent
   ],
   imports: [
+    FormsModule,
     CommonModule
   ],
   exports:[

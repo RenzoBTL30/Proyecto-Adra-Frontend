@@ -7,12 +7,11 @@ import { Usuario } from 'src/app/models/usuario';
   providedIn: 'root'
 })
 export class AuthService {
- private _usuario:Usuario;
- private _token: string;
+  private _usuario:Usuario | null = new Usuario();
+  private _token:string |null = '';
 
   constructor(private http:HttpClient) { 
-    this._usuario = new Usuario();
-    this._token = "";
+    
   }
   public get usuario():Usuario{
     if(this._usuario != null){
@@ -23,14 +22,14 @@ export class AuthService {
     }
     return new Usuario();
   }
-  public get token():string{
+  public get token():string | any{
     if(this._token != null){
       return this._token;
     }else if(this._token == null && sessionStorage.getItem('token')!=null){
         this._token = sessionStorage.getItem('token') || '{}';
         return this._token;
     }
-    return "";
+    return null;
 
   }
 
@@ -44,14 +43,14 @@ export class AuthService {
     params.set('grant_type', 'password');
     params.set('username', usuario.nu_dni);
     params.set('password', usuario.de_contrasenia);
-    sessionStorage.removeItem('usuario');
-    sessionStorage.removeItem('token');
+
     return this.http.post<any>(urlEndpoint, params.toString(), {headers: httpHeaders});
   }
   guardarUsuario(accessToken: string):void{
     let payload = this.obtenerDatosToken(accessToken);
     this._usuario = new Usuario();
     this._usuario.nu_dni = payload.user_name;
+    this._usuario.roles = payload.authorities;
     sessionStorage.setItem("usuario", JSON.stringify(this._usuario));
   }
   guardarToken(accessToken:string):void{
@@ -61,7 +60,9 @@ export class AuthService {
 
   obtenerDatosToken(accessToken:string):any{
       if(accessToken != null){
-        return JSON.parse(atob(accessToken.split('.')[1]));
+        if(accessToken.length>0){
+          return JSON.parse(atob(accessToken.split('.')[1]));
+        }   
       }
         return null;       
   }
@@ -75,5 +76,13 @@ isAuthenticated():boolean{
   }
 return false;
 }
+
+logout():void{
+  // this._token=null;
+  // this._usuario = null;
+   sessionStorage.clear();
+   sessionStorage.removeItem('token');
+   sessionStorage.removeItem('usuario');
+ }
 
 }

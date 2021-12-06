@@ -12,119 +12,104 @@
                 </div>
             </div>
             <div class="boton">
-                <button href="#" data-bs-toggle="modal" data-bs-target="#crearmodulo" class="btn btn-primary">+ Crear
+                <button href="#" data-bs-toggle="modal" data-bs-target="#crear" class="btn btn-primary" (click)="limpiar()">+ Crear
                     nuevo módulo</button>
             </div>
         </div>
 
         <div class="lista-modulos">
-            <div class="card text-center" style="width: 15rem;">
-                <a [routerLink]="['/menuprincipal2/modulos/sesiones']">
-                    <img src="/assets/img/facebook-emp.jpg" class="card-img-top" alt="..">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title" style="margin-bottom: 20px;">Facebook Empresarial</h5>
-                    <div style="display:flex; justify-content: flex-end; gap: 8px;">
-                        <button class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-borrar"><i
-                                class="fas fa-trash-alt"></i></button>
+            <ng-container *ngFor="let c of capacitaciones" >
+                <div class="card text-center" style="width: 15rem;" *ngIf="(c.es_capacitacion == '1') && (c.tipo_capacitacion.id == 1)">
+                    <a [routerLink]="['/menuprincipal2/modulos/sesiones', c.id]">
+                        <img src="/assets/img/facebook-emp.jpg" class="card-img-top" alt="..">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title" style="margin-bottom: 20px;">{{c.no_capacitacion}}</h5>
+                        <div style="display:flex; justify-content: flex-end; gap: 8px;">
+                            <button (click)="cargarDatos(c.id)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editar"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger"><i
+                                    class="fas fa-trash-alt" (click)="delete(c)"></i></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="card text-center" style="width: 15rem;">
-                <a [routerLink]="['/menuprincipal2/modulos/sesiones']">
-                    <img src="/assets/img/facebook-emp.jpg" class="card-img-top" alt="..">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title" style="margin-bottom: 20px;">Facebook Empresarial</h5>
-                    <div style="display:flex; justify-content: flex-end; gap: 8px;">
-                        <button class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-borrar"><i
-                                class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card text-center" style="width: 15rem;">
-                <a [routerLink]="['/menuprincipal2/modulos/sesiones']">
-                    <img src="/assets/img/facebook-emp.jpg" class="card-img-top" alt="..">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title" style="margin-bottom: 20px;">Facebook Empresarial</h5>
-                    <div style="display:flex; justify-content: flex-end; gap: 8px;">
-                        <button class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-borrar"><i
-                                class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card text-center" style="width: 15rem;">
-                <a [routerLink]="['/menuprincipal2/modulos/sesiones']">
-                    <img src="/assets/img/facebook-emp.jpg" class="card-img-top" alt="..">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title" style="margin-bottom: 20px;">Facebook Empresarial</h5>
-                    <div style="display:flex; justify-content: flex-end; gap: 8px;">
-                        <button class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-borrar"><i
-                                class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
+            </ng-container>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="crearmodulo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="crear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog tamaño-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Crear Nuevo Módulo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" #closebutton aria-label="Close"></button>
             </div>
-            <div class="modal-body" style="padding: 30px;">
-                <div class="mb-3 row">
-                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputNombre">
+            <div class="modal-body" style="padding: 30px;" >
+                <form method="post">
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                        <div class="col-sm-10">
+                            <input [(ngModel)]="capacitacion.no_capacitacion" type="text" class="form-control" id="no_capacitacion" name="no_capacitacion" #nombre>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label label-bold">Descripcion:</label>
-                    <textarea maxlength="100" class="form-control" id="exampleFormControlTextarea1"
-                        (keyup)="onKey($event)"></textarea>
-                    <p id="contador-caract" style="margin-top: 5px; text-align: right;">{{contador}}/100</p>
-                </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label label-bold">Descripcion:</label>
+                        <textarea [(ngModel)]="capacitacion.de_capacitacion" maxlength="100" class="form-control" id="de_capacitacion"
+                            (keyup)="onKey($event)" name="de_capacitacion" #descripcion></textarea>
+                        <p id="contador-caract" style="margin-top: 5px; text-align: right;">{{contador}}/100</p>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label label-bold">Subir una imagen:</label>
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
 
-                <div class="mb-3">
-                    <label for="formFile" class="form-label label-bold">Subir una imagen:</label>
-                    <input class="form-control" type="file" id="formFile">
-                </div>
-
+                </form>
+                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Crear</button>
+                <button type="button" class="btn btn-primary" (click)="crear()">Crear</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="modal-borrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro que desea eliminar?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Si</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+
+<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog tamaño-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Editar Nuevo Módulo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" #closebutton2 aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 30px;" >
+                    <form>
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                            <div class="col-sm-10">
+                                <input [(ngModel)]="capacitacion_editar.no_capacitacion" type="text" class="form-control" id="no_capacitacion" name="no_capacitacion" #nombre_edit>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label label-bold">Descripcion:</label>
+                            <textarea [(ngModel)]="capacitacion_editar.de_capacitacion" maxlength="100" class="form-control" id="de_capacitacion"
+                                (keyup)="onKey($event)" name="de_capacitacion" #descripcion_edit></textarea>
+                            <p id="contador-caract" style="margin-top: 5px; text-align: right;">{{contador}}/100</p>
+                        </div>
+        
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label label-bold">Subir una imagen:</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+    
+                    </form>
+                    
+    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+</div>    
+

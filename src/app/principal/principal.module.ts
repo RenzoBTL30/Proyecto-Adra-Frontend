@@ -6,6 +6,7 @@ import { RecursosModule } from '../recursos/recursos.module';
 import { HistorialModulosModule } from '../historial-modulos/historial-modulos.module';
 import { MenuPrincipal1Module } from '../menu-principal1/menu-principal1.module';
 import { ModulosModule } from '../modulos/modulos.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -18,7 +19,8 @@ import { ModulosModule } from '../modulos/modulos.module';
     HistorialModulosModule,
     RecursosModule,
     ModulosModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports:[
     PrincipalComponent

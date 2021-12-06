@@ -5,8 +5,8 @@ import { GestionModuloComponent } from './views/gestion-modulo/gestion-modulo.co
 import { GestionSesionComponent } from './views/gestion-sesion/gestion-sesion.component';
 
 const routes: Routes = [
-  {path: '', component:GestionModuloComponent},
-  {path: 'sesiones', component:GestionSesionComponent}
+  {path: 'vista', component:GestionModuloComponent},
+  {path: 'sesiones/:id', component:GestionSesionComponent}
 ];
 
 @NgModule({

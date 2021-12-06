@@ -1,9 +1,8 @@
 <div class="home-content">
     <div>
-        <b style="font-size: x-large;">Facebook Empresarial</b>
+        <b style="font-size: x-large;">{{nombre_cap}}</b>
         <h5 style="margin-top: 20px;">Descripción:</h5>
-        <h5 style="text-align: justify; margin-top: 20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem provident voluptatibus alias, a eos architecto totam quod. Est repellendus perspiciatis excepturi, 
-            inventore, numquam iure consequatur laudantium repudiandae sint, voluptate ducimus.</h5>
+        <h5 style="text-align: justify; margin-top: 20px;">{{descrip_cap}}</h5>
         <div class="centro1" style="margin-top: 30px;">
             <div class="modulo">
                 <h4 style="text-align: center;">SESIONES</h4>
@@ -20,54 +19,47 @@
         </div>
 
         <div>
-            <div class="accordion" id="accordionExample" style="margin-top: 30px;">
-                <div class="accordion-item">
-                    <div
-                        style=" height: 60px; width: 100%;display: flex; justify-content: space-between;padding: 0px 20px; align-items: center;">
-
-                        <span style="width: 200px;" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            1. Facebook y el mundo  10/10/2021 - 25/11/2021
-                        </span>
-                        <div>
-                            <button style="margin-left: 10px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarrecurso">+ Agregar Recurso</button>
-                            <button style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                            <button style="margin-left: 10px;" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-borrar"><i class="fas fa-trash-alt"></i></button>
-                        </div>
-                    </div>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body" style="padding-left: 40px; padding-right: 40px;">
-                            <div class="row" style="border: 1px solid black; padding: 8px; margin-bottom: 4px; display: flex;">
-                                <div class="col-1">
-                                    <i class="fas fa-file-pdf td-icono"></i>
-                                </div>
-                                <div class="col-9" style="text-align: justify; padding-top: 5px;">
-                                    <h5>Lectura 1</h5>
-                                </div>
-                                <div class="col-2">
-                                    <button style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                    <button style="margin-left: 10px;" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-borrar"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                            <div class="row" style="border: 1px solid black; padding: 8px; margin-bottom: 4px; display: flex;">
-                                <div class="col-1">
-                                    <i class="fas fa-file-pdf td-icono"></i>
-                                </div>
-                                <div class="col-9" style="text-align: justify; padding-top: 5px;">
-                                    <h5>Lectura 1</h5>
-                                </div>
-                                <div class="col-2">
-                                    <button style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                    <button style="margin-left: 10px;" class="btn btn-danger"><i class="fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#modal-borrar"></i></button>
-                                </div>
+            <ng-container *ngFor="let s of sesiones" >
+                <div class="accordion" id="accordionExample" style="margin-top: 30px;" *ngIf="(s.es_sesion == '1') && (s.capacitacion.id == id_cap)" >
+                    <div class="accordion-item">
+                        <div
+                            style=" height: 60px; width: 100%;display: flex; justify-content: space-between;padding: 0px 20px; align-items: center;">
+    
+                            <span style="width: 200px;" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                {{s.de_tema}} <br> {{s.fe_inicio | date:'dd-MM-yyyy'}} al {{s.fe_fin | date:'dd-MM-yyyy'}}
+                            </span>
+                            <div>
+                                <button style="margin-left: 10px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarrecurso">+ Agregar Recurso</button>
+                                <button (click)="cargarDatosSesion(s.id)" style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#editarsesion"></i></button>
+                                <button (click)="deleteSesion(s)" style="margin-left: 10px;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            
+                                <div class="accordion-body" style="padding-left: 40px; padding-right: 40px;">
+                                    <ng-container *ngFor="let r of recursos" >
+                                        <div class="row" style="border: 1px solid black; padding: 8px; margin-bottom: 4px; display: flex;" *ngIf="(r.es_recurso == '1') && (r.sesion.id == s.id)">
+                                            <div class="col-1">
+                                                <i class="fas fa-file-pdf td-icono"></i>
+                                            </div>
+                                            <div class="col-9" style="text-align: justify; padding-top: 5px;">
+                                                <h5>{{r.no_recurso}}</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <button style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#editarrecurso"></i></button>
+                                                <button (click)="deleteRecurso(r)" style="margin-left: 10px;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                        </div>
                     </div>
+                    
                 </div>
-                
-
-            </div>
+            </ng-container>
+            
 
             
         </div>
@@ -76,12 +68,97 @@
     </div>
 </div>
 
+<!--Crear Sesion-->
+
+<div class="modal fade" id="crearsesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Crear nueva sesion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tema:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion.de_tema" type="text" class="form-control" id="inputNombre" name="de_tema" #tema>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion.fe_inicio" type="date" class="form-control" id="inputNombre" name="fe_inicio" #fech_inicio>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion.fe_fin" type="date" class="form-control" id="inputNombre" name="fe_fin" #fech_fin>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button (click)="crearSesion()" type="button" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Editar Sesion-->
+
+<div class="modal fade" id="editarsesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar nueva sesion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton2></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tema:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion_edit.de_tema" type="text" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion_edit.fe_inicio" type="date" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion_edit.fe_fin" type="date" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button (click)="editarSesion()" type="button" class="btn btn-primary">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--Crear Recurso-->
+
 <div class="modal fade" id="agregarrecurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog tamaño-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Agregar recurso</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton3></button>
             </div>
             <div class="modal-body" style="padding: 30px;">
                 <div class="mb-3 row">
@@ -89,13 +166,48 @@
                     <div class="col-sm-10">
                         <select class="form-select" aria-label="Default select example">
                             <option selected></option>
-                            <option value="1">Documento</option>
-                            <option value="2">Vídeo</option>
-                            <option value="3">Enlace</option>
-                            <option value="4" onclick='cambiar()'>Evaluación</option>
+                            <option *ngFor="let tr of tiporecursos" value={{tr.id}}>{{tr.no_tipo_recurso}}</option>
                         </select>
                     </div>
                 </div>
+                <div id="cambiable1">
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="recurso.no_recurso" type="text" class="form-control" id="inputNombre" #nombre_rec>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="recurso.di_url" type="text" class="form-control" id="inputNombre" #url_rec>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Editar Recurso-->
+
+<div class="modal fade" id="editarrecurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar recurso</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton4></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
                 <div id="cambiable1">
                     <div class="mb-3 row">
                         <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
@@ -121,6 +233,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 <!-- Aparece este div si el valor del tipo es "Evaluacion"
 
@@ -151,58 +267,3 @@
 
 -->
 
-<div class="modal fade" id="crearsesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog tamaño-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Crear nueva sesion</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="padding: 30px;">
-
-                <div class="mb-3 row">
-                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tema:</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputNombre">
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
-                    <div class="col-sm-10">
-                      <input type="date" class="form-control" id="inputNombre">
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
-                    <div class="col-sm-10">
-                      <input type="date" class="form-control" id="inputNombre">
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Crear</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modal-borrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro que desea eliminar?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Si</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>

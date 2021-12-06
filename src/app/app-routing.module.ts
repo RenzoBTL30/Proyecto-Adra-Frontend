@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { AnunciosModule } from './anuncios/anuncios.module';
+import { GestionAnuncioModule } from './componentes-bi/gestion-anuncio/gestion-anuncio.module';
 import { GestionAnuncioComponent } from './componentes-bi/gestion-anuncio/view/gestion-anuncio/gestion-anuncio.component';
 import { GestionModuloModule } from './componentes-bi/gestion-modulo/gestion-modulo.module';
 import { GestionModuloComponent } from './componentes-bi/gestion-modulo/views/gestion-modulo/gestion-modulo.component';
+import { GestionSeminarioModule } from './componentes-bi/gestion-seminario/gestion-seminario.module';
 import { GestionSeminarioComponent } from './componentes-bi/gestion-seminario/view/gestion-seminario/gestion-seminario.component';
 import { MenuInicioComponent } from './componentes-bi/menu-inicio/view/menu-inicio/menu-inicio.component';
 import { ReporteComponent } from './componentes-bi/reporte/view/reporte/reporte.component';
@@ -60,6 +64,10 @@ const routes : Routes = [
     PrincipalModule,
     PrincipalbiModule,
     GestionModuloModule,
+    GestionSeminarioModule,
+    GestionAnuncioModule,
+    FormsModule,
+    AnunciosModule,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]

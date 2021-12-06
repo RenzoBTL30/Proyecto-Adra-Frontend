@@ -5,6 +5,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PedidosOracionModule } from '../pedidos-oracion/pedidos-oracion.module';
 import { SidebarBiComponent } from './sidebar-bi/sidebar-bi.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,6 +19,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     PedidosOracionModule,
+    HttpClientModule,
+    FormsModule,
     RouterModule
   ],
   exports: [

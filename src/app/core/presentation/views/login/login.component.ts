@@ -1,6 +1,9 @@
+import { ProviderAst } from '@angular/compiler';
 import { Component, Inject, Input, OnInit, Pipe } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
+import { BarrasuperiorComponent } from 'src/app/recursos/barra-superior-usuario/barrasuperior.component';
+import { RecursosModule } from 'src/app/recursos/recursos.module';
 import swal from 'sweetalert2';
 import { AuthService } from './auth.service';
 
@@ -8,12 +11,13 @@ import { AuthService } from './auth.service';
 @Component({
   selector: 'adra-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers:[BarrasuperiorComponent]
 })
 
 export class LoginComponent implements OnInit {
   usuario: Usuario;
-  constructor(private authService: AuthService, private router:Router) { 
+  constructor(private authService: AuthService, private router:Router, private barrasuperior: BarrasuperiorComponent ) { 
     this.usuario = new Usuario();
   }
 
@@ -26,9 +30,16 @@ export class LoginComponent implements OnInit {
       console.log(response);
       this.authService.guardarUsuario(response.access_token);
       this.authService.guardarToken(response.access_token);
-      this.router.navigate(['/menuprincipal/inicio']);
+      //his.barrasuperior.mostrarDni(response.access_token);
+
+      this.router.navigate(['/menuprincipal2/inicio']);
+
       let usuario = this.authService.usuario;
+
+      console.log(JSON.stringify(sessionStorage.getItem('usuario')));
       
+     
+
       swal.fire('Login', `Hola ${usuario.nu_dni}, has iniciado sesión con exito!`)
     },error=>{
         if(error.status == 400){
@@ -36,6 +47,6 @@ export class LoginComponent implements OnInit {
         }
     }  
     );
-    }
+  }
   
 }
