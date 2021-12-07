@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnuncioService } from 'src/app/servicios/anuncio.service';
 
 @Component({
   selector: 'adra-anuncios',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnunciosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private anuncioService: AnuncioService) { }
 
   ngOnInit(): void {
   }
+
+  
 
 }

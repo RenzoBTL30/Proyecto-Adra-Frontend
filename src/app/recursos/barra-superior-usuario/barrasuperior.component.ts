@@ -11,7 +11,8 @@ export class BarrasuperiorComponent implements OnInit {
 
   valor:any;
   Stringvalor:any;
-  dni_global:any;
+  nombre:any = " ";
+  apellido_paterno:any = " ";
  
 
   constructor(private personaService: PersonaService) {
@@ -36,14 +37,11 @@ export class BarrasuperiorComponent implements OnInit {
         
         this.personaService.getPersonaId(id).subscribe(
            es=>{
-              this.dni_global = es.no_persona;
+              this.nombre = es.no_persona;
+              this.apellido_paterno = es.ap_paterno;
            }     
         );
   }  
-
-  getPersona(id:number){
-    
-  }
 }
 
 

@@ -10,6 +10,7 @@ import { HistorialModulosModule } from '../historial-modulos/historial-modulos.m
 import { SeminariosComponent } from '../seminarios/view/seminarios/seminarios.component';
 import { SesionesModule } from "../sesiones/sesiones.module";
 import { PrincipalModule } from '../principal/principal.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { PrincipalModule } from '../principal/principal.module';
     SesionesModule,
     HistorialModulosModule,
     PrincipalModule,
-
+    FormsModule,
   ],
   exports: [
     PageMenu1Component

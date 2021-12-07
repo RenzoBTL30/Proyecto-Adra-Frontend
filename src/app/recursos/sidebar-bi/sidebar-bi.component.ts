@@ -8,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarBiComponent implements OnInit {
   
+  
+
   constructor() {
-   }
+
+  }
 
   ngOnInit(): void {
     

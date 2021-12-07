@@ -30,11 +30,16 @@ export class LoginComponent implements OnInit {
       console.log(response);
       this.authService.guardarUsuario(response.access_token);
       this.authService.guardarToken(response.access_token);
-      //his.barrasuperior.mostrarDni(response.access_token);
-
-      this.router.navigate(['/menuprincipal2/inicio']);
 
       let usuario = this.authService.usuario;
+      
+      if (usuario.roles[0] == 'Socio' || usuario.roles[0] == 'Asesor') {
+        this.router.navigate(['/menuprincipal/inicio']);
+      } else if (usuario.roles[0] == 'JefeBI'){
+        this.router.navigate(['/menuprincipal2/inicio']);
+      } else {
+        this.router.navigate(['/menuprincipal2/inicio']);
+      }
 
       console.log(JSON.stringify(sessionStorage.getItem('usuario')));
       
