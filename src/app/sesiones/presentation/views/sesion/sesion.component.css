@@ -141,7 +141,31 @@ a{
     margin: auto;
 }
 
+td{
+    max-width: 100px;
+}
+
+.td-icono{
+    max-width: 10px;
+    text-align: center;
+    border-right: 0.5px rgb(204, 204, 204) solid;
+}
+
+.td-icono i{
+    font-size: xx-large;
+    margin-right: 15px;
+}
+
+.td-icono-visto{
+    max-width: 10px;
+    text-align: center;
+}
+
 .icono-visto{
     font-size: 20px;
     color: rgb(204, 204, 204);
+}
+
+.icono-visto-verde{
+    color: rgb(17, 170, 30);
 }

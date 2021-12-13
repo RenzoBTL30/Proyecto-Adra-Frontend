@@ -8,7 +8,7 @@
                     <div id="clase" style="text-align: center;">
                         <img src="/assets/img/icono-usuario.png" alt="" width="40%">
                         <div style="margin-top: 20px;">
-                            <h4 style="text-align: center;">Jose Infante Carrion</h4>
+                            <h4 style="text-align: center;">{{nombre}} {{apepat}} {{apemat}}</h4>
                         </div>
                     </div>
                 </a>
@@ -18,13 +18,13 @@
                     <div class="cabecera_recurso">
                         <div class="row">
                             <div class="col-6">
-                                <h3> 1- Facebook y el Mundo</h3>
+                                <h3>{{tema}}</h3>
                             </div>
                             <div class="col-6">
                                 <div class="progress" style="height: 25px;">
-                                    <div class="progress-bar" role="progressbar"
+                                    <div class="progress-bar" role="progressbar" [ngStyle]="{'width': progreso +'%'}"
                                         style="width: 25%; font-size: 18px; background-color: green;" aria-valuenow="25"
-                                        aria-valuemin="0" aria-valuemax="100">25%</div>
+                                        aria-valuemin="0" aria-valuemax="100">{{progreso}}%</div>
                                 </div>
                             </div>
                         </div>
@@ -32,36 +32,14 @@
                     <div class="centro">
                         <table class="table table-bordered">
                             <tbody>
-                                <tr>
-                                    <td class="td-icono"><i class="fab fa-youtube"></i></td>
-                                    <td>Facebook y su impacto en el mundo</td>
-                                    <td class="td-icono-visto"><i class="fas fa-check-circle icono-visto"></i></td>
-                                </tr>
-                                <tr>
+                                <tr *ngFor="let li of listaRecursos">
                                     <td class="td-icono"><i class="fas fa-file-pdf"></i></td>
-                                    <td>Historia de Facebook</td>
-                                    <td class="td-icono-visto"><i class="fas fa-check-circle icono-visto"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="td-icono"><i class="fas fa-file-powerpoint"></i></td>
-                                    <td>PPT Ventajas del Facebook</td>
-                                    <td class="td-icono-visto"><i class="fas fa-check-circle icono-visto"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="td-icono"><i class="fas fa-file-pdf"></i></td>
-                                    <td>¿Por qué usar Facebook?</td>
-                                    <td class="td-icono-visto"><i class="fas fa-check-circle icono-visto"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="td-icono"><i class="fas fa-file-pdf"></i></td>
-                                    <td>Facebook Ads</td>
-                                    <td class="td-icono-visto"><i class="fas fa-check-circle icono-visto"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="td-icono"><i class="fas fa-file-alt"></i></td>
-                                    <td>Evaluación de la Sesión</td>
-                                    <td class="td-icono-visto"><i class="fas fa-check-circle icono-visto"></i></td>
-                                </tr>
+                                    <td>{{li.RECURSO}}</td>
+                                    <ng-container [ngSwitch]="li.VISTO">
+                                        <td *ngSwitchCase="'0'" class="td-icono-visto"><i class="fas fa-check-circle icono-visto"></i></td>
+                                        <td *ngSwitchCase="'1'" class="td-icono-visto"><i class="fas fa-check-circle icono-visto icono-visto-verde"></i></td>
+                                    </ng-container>
+                                </tr>    
                             </tbody>
                         </table>
                     </div>

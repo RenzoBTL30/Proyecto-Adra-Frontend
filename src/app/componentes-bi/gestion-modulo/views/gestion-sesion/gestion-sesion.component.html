@@ -1,9 +1,9 @@
 <div class="home-content">
     <div>
-        <b style="font-size: x-large;">{{nombre_cap}}</b>
-        <h5 style="margin-top: 20px;">Descripción:</h5>
-        <h5 style="text-align: justify; margin-top: 20px;">{{descrip_cap}}</h5>
-        <div class="centro1" style="margin-top: 30px;">
+        <b style="font-size: 35px;">{{nombre_cap}}</b>
+        <h5 style="margin-top: 25px; font-weight: bold;">Descripción:</h5>
+        <h5 style="text-align: justify; margin-top: 20px; font-size: 18px;">{{descrip_cap}}</h5>
+        <div class="centro1" style="margin-top: 60px;">
             <div class="modulo">
                 <h4 style="text-align: center;">SESIONES</h4>
             </div>
@@ -23,11 +23,11 @@
                 <div class="accordion" id="accordionExample" style="margin-top: 30px;" *ngIf="(s.es_sesion == '1') && (s.capacitacion.id == id_cap)" >
                     <div class="accordion-item">
                         <div
-                            style=" height: 60px; width: 100%;display: flex; justify-content: space-between;padding: 0px 20px; align-items: center;">
+                            style=" height: 80px; width: 100%;display: flex; justify-content: space-between;padding: 0px 20px; align-items: center;">
     
                             <span style="width: 200px;" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                {{s.de_tema}} <br> {{s.fe_inicio | date:'dd-MM-yyyy'}} al {{s.fe_fin | date:'dd-MM-yyyy'}}
+                                <h5>{{s.de_tema}}</h5> {{s.fe_inicio | date:'dd-MM-yyyy'}} al {{s.fe_fin | date:'dd-MM-yyyy'}}
                             </span>
                             <div>
                                 <button (click)="enviarSesionID(s.id)" style="margin-left: 10px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarrecurso">+ Agregar Recurso</button>
@@ -164,28 +164,73 @@
                 <div class="mb-3 row">
                     <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tipo:</label>
                     <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example" [(ngModel)]="recurso.tipo_recurso.id" name="tipo_recurso.id">
-                            <option selected></option>
-                            <option *ngFor="let tr of tiporecursos" ngValue="{{tr.id}}" #tipo_rec>{{tr.no_tipo_recurso}}</option>
+                        <select (change)="getSelectedValue($event)" class="form-select" aria-label="Default select example" [(ngModel)]="recurso.tipo_recurso" name="tipo_recurso.id">
+                            <optgroup label="Selecciona">
+                                <option *ngFor="let tr of tiporecursos" [ngValue]="tr" #tipo_rec >{{tr.no_tipo_recurso}}</option>
+                            </optgroup>
                         </select>
                     </div>
                 </div>
-                <div id="cambiable1">
-                    <div class="mb-3 row">
-                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
-                        <div class="col-sm-10">
-                          <input [(ngModel)]="recurso.no_recurso" type="text" class="form-control" id="inputNombre" name="no_recurso" #nombre_rec>
+                <ng-container [ngSwitch]="validador1">
+                    <div id="cambiable1" *ngSwitchCase="false">
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso.no_recurso" type="text" class="form-control" id="inputNombre" name="no_recurso" #nombre_rec>
+                            </div>
                         </div>
+    
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso.di_url" type="text" class="form-control" id="inputNombre" name="di_url" #url_rec>
+                            </div>
+                        </div>
+                        
                     </div>
 
-                    <div class="mb-3 row">
-                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
-                        <div class="col-sm-10">
-                          <input [(ngModel)]="recurso.di_url" type="text" class="form-control" id="inputNombre" name="di_url" #url_rec>
+                    <div id="cambiable2" *ngSwitchCase="true">
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso.no_recurso" type="text" class="form-control" id="inputNombre" name="no_recurso" #nombre_rec>
+                            </div>
                         </div>
+    
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso.di_url" type="text" class="form-control" id="inputNombre" name="di_url" #url_rec>
+                            </div>
+                        </div>
+                        <div class="cajapreguntas" [innerHTML]="htmlcontent" #pregunta>
+                            
+                            <div style="margin-left: 25px; margin-bottom: 20px;">
+
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="mb-3 row">
+                                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold"><i class="far fa-circle"></i></label>
+                                            <div class="col-sm-10">
+                                              <input type="text" class="form-control" id="inputNombre">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="mb-3 ">
+                                            <div><i class="fas fa-check"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-primary">+ Añadir</button>
+                            </div>
+                            <button class="btn btn-primary" (click)="agregarPregunta()">+ Añadir pregunta</button>
+                        </div>
+                        
                     </div>
-                    
-                </div>
+                </ng-container>
+                
                 
 
             </div>
@@ -208,32 +253,32 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton4></button>
             </div>
             <div class="modal-body" style="padding: 30px;">
-                <div class="mb-3 row">
-                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tipo:</label>
-                    <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example" [(ngModel)]="recurso_edit.tipo_recurso.id" name="tipo_recurso.id">
-                            <option selected></option>
-                            <option *ngFor="let tr of tiporecursos" ngValue="{{tr.id}}" #tipo_rec>{{tr.no_tipo_recurso}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div id="cambiable1">
                     <div class="mb-3 row">
-                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tipo:</label>
                         <div class="col-sm-10">
-                          <input [(ngModel)]="recurso_edit.no_recurso" type="text" class="form-control" id="inputNombre">
+                            <select class="form-select" aria-label="Default select example" [(ngModel)]="recurso_edit.tipo_recurso" [ngModel]="recurso_edit.tipo_recurso">
+                                <optgroup label="Selecciona">
+                                    <option *ngFor="let tr of tiporecursos" [ngValue]="tr" #tipo_rec>{{tr.no_tipo_recurso}}</option>
+                                </optgroup>
+                            </select>
                         </div>
                     </div>
-
-                    <div class="mb-3 row">
-                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
-                        <div class="col-sm-10">
-                          <input [(ngModel)]="recurso_edit.di_url" type="text" class="form-control" id="inputNombre">
+                    <div id="cambiable1">
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso_edit.no_recurso" type="text" class="form-control" id="inputNombre">
+                            </div>
                         </div>
-                    </div>
-                    
-                </div>
-                
+    
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso_edit.di_url" type="text" class="form-control" id="inputNombre">
+                            </div>
+                        </div>
+                        
+                    </div>                
 
             </div>
             <div class="modal-footer">
@@ -247,32 +292,5 @@
 
 
 
-<!-- Aparece este div si el valor del tipo es "Evaluacion"
 
-<div class="cajapreguntas" >
-    <div class="mb-3 row">
-        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Pregunta:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputNombre">
-        </div>
-    </div>
-    <div style="margin-left: 25px; margin-bottom: 20px;">
-        <div class="mb-3 row">
-            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">circ</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" id="inputNombre">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">circ:</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" id="inputNombre">
-            </div>
-        </div>
-        <button class="btn btn-primary">+ Añadir</button>
-    </div>
-    <button class="btn btn-primary">+ Añadir pregunta</button>
-</div>
-
--->
 

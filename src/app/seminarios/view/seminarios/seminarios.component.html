@@ -4,31 +4,44 @@
         Seminarios en vivo
     </div>
 
-    <div class="reunion" *ngFor="let se of seminarios">
-        <p>{{se.Tema}}</p>
-        <div class="link-entrar">
-            <a href="#">
-                <i class="fas fa-video"></i>
-                En vivo, entra ahora
-            </a>
-        </div>
-    </div>
-    <div class="reunion">
-        <div class="link-pendiente" style="color:white;">
-                <i class="fas fa-video"></i>
-                Comienza el 08-12-2021 8:30
-        </div>
-    </div>
-   
-    <div class="reunion">
-        <p>Facebook Empresarial</p>
-        <div class="link-terminado">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                <i class="fas fa-video"></i>
-                Encuesta pendiente
-            </a>
-        </div>        
-    </div>
+    
+
+    
+        <ng-container *ngFor="let se of seminarios" [ngSwitch]="compararFechas(se.FechaInicio)">
+
+            <div class="reunion" *ngSwitchCase="true">
+                <p>{{se.Nombre}}</p>
+                <div class="link-entrar" #color_cambiar>
+                    <ng-container [ngSwitch]="validador2">
+                        <a (click)="mostrarEncuesta(); obteneridSesion(se.Id_ses, se.Id_cap)" href="{{se.Direccion}}" target="_blank" *ngSwitchDefault>
+                            <i class="fas fa-video"></i>
+                            En vivo, entra ahora
+                        </a>
+
+                        <a style="color: white; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" *ngSwitchCase='1'>
+                            <i class="fas fa-video"></i>
+                            Encuesta pendiente
+                        </a>
+
+                        <a style="color: white;" *ngSwitchCase='2'>
+                            <i class="fas fa-video"></i>
+                            Encuesta finalizada
+                        </a>
+                       
+                    </ng-container>
+                    
+                </div>
+            </div>
+           
+
+            <div class="reunion" *ngSwitchCase="false">
+                <div class="link-pendiente" style="color:white;">
+                        <i class="fas fa-video"></i>
+                        Comienza el <br> {{se.FechaInicio | date:'dd-MM-yyyy HH:mm:ss'}}
+                </div>
+            </div>
+       
+        </ng-container>
 </div>
 
 <!-- Cambio si el usuario es Asesor Adra
@@ -42,7 +55,67 @@
 -->
 
 
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog tamaño-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Valoración</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton></button>
+                </div>
+                <div class="modal-body">
+                    
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label label-bold">Comentario:</label>
+                            <textarea [(ngModel)]="control_vista.de_comentario" name="de_comentario" maxlength="200" class="form-control" id="exampleFormControlTextarea1"
+                                (keyup)="onKey($event)"></textarea>
+                            <p id="contador-caract" style="margin-top: 5px; text-align: right;">{{contador}}/200</p>
+                        </div>
+                    
+                    
+                    <div class="escala-valoracion">
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(1)">
+                                <i class="far fa-dizzy carita-tamaño muy-inst"></i>
+                                <p>Muy insatisfecho</p>
+                            </button>
 
-<adra-encuestas-valoracion></adra-encuestas-valoracion>
+                        </div>
 
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(2)">
+                                <i class="far fa-frown carita-tamaño inst"></i>
+                                <p>Insatisfecho</p>
+                            </button>
+                        </div>
 
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(3)">
+                                <i class="far fa-meh carita-tamaño ni-inst-satis"></i>
+                                <p>Ni satisfecho ni insatisfecho</p>
+                            </button>
+                        </div>
+
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(4)">
+                                <i class="far fa-smile carita-tamaño satis"></i>
+                                <p>Satisfecho</p>
+                            </button>
+                        </div>
+
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(5)">
+                                <i class="far fa-smile-beam carita-tamaño muy-satis"></i>
+                                <p>Muy satisfecho</p>
+                            </button>
+                        </div>
+
+                    </div>
+                        
+                </div>
+                <div class="modal-footer" style="justify-content: center;">
+                    <h4>¡Gracias por tu valoración!</h4>
+                </div>
+            </div>
+        </div>
+    </div>

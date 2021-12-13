@@ -5,6 +5,7 @@ import { SesionComponent } from './presentation/views/sesion/sesion.component';
 import { ModulosModule } from '../modulos/modulos.module';
 import { EvaluacionComponent } from './presentation/views/evaluacion/evaluacion/evaluacion.component';
 import { RecursosModule } from '../recursos/recursos.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import { RecursosModule } from '../recursos/recursos.module';
   imports: [
     CommonModule,
     ModulosModule,
-    RecursosModule
+    RecursosModule,
+    RouterModule
   ],
   exports:[
     PageSesionComponent

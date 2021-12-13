@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SeminariosComponent } from './view/seminarios/seminarios.component';
-import { EncuestasValoracionComponent } from './view/encuestas-valoracion/encuestas-valoracion.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     SeminariosComponent,
-    EncuestasValoracionComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     SeminariosComponent

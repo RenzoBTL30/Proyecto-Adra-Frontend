@@ -86,3 +86,22 @@ a{
     color: black;
     
 }
+
+#lista-seleccion{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+}
+
+#lista-seleccion > .elemento{
+    border: black 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(235, 235, 245);
+}
+
+#segundo-list{
+    margin-top: 20px;
+}

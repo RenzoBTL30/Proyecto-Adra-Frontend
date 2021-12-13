@@ -27,9 +27,12 @@ export class RecursoService {
   getRecursos():Observable<Recurso[]>{
     return this.http.get<Recurso[]>(this.urlrecurso + '/all', {headers: this.agregarAuthorizationHeader()});    
   }
+
+
+
   create(recurso:Recurso):Observable<Recurso>{
-    return this.http.post(this.urlrecurso + '/post', recurso, {headers: this.agregarAuthorizationHeader()})
-    .pipe(
+    return this.http.post<Recurso>(this.urlrecurso + '/post', recurso, {headers: this.agregarAuthorizationHeader()})
+    /*.pipe(
       map((response: any)=> response.post as Recurso),
       catchError(e =>{
         if(e.status == 400){
@@ -39,8 +42,12 @@ export class RecursoService {
           console.error(e.error.mensaje);
         }
         return throwError(e);
-      }));
+      }));*/
   }
+
+
+
+
   getRecursoId(id:number): Observable<Recurso>{
     return this.http.get<Recurso>(`${this.urlrecurso}/all/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e=>{

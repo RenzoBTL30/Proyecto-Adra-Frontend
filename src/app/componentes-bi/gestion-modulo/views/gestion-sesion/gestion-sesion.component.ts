@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Capacitacion } from 'src/app/models/capacitacion';
+import { Pregunta } from 'src/app/models/pregunta';
 import { Recurso } from 'src/app/models/recurso';
 import { Sesion } from 'src/app/models/sesion';
 import { Tipo_Capacitacion } from 'src/app/models/tipo_capacitacion';
@@ -22,7 +23,8 @@ export class GestionSesionComponent implements OnInit {
   sesiones: Sesion[]=[];
   recursos: Recurso[]=[];
   tiporecursos: TipoRecurso[]=[];
-
+  tiporecursos_edit: TipoRecurso[]=[];
+  htmlcontent:string="";
 
   @ViewChild('closebutton') closebutton:any;
   @ViewChild('closebutton2') closebutton2:any;
@@ -38,9 +40,13 @@ export class GestionSesionComponent implements OnInit {
   @ViewChild('nombre_rec') nombre_rec:any;
   @ViewChild('url_rec') url_rec:any;
 
+  @ViewChild('pregunta') pregunta?:ElementRef;
 
+  constructor(private renderer: Renderer2,private capacitacionService: CapacitacionService, private router:Router, private sesionService: SesionService, private recursoService: RecursoService, private tiporec: TiporecursoService, private activatedRouter:ActivatedRoute) { 
 
-  constructor(private capacitacionService: CapacitacionService, private router:Router, private sesionService: SesionService, private recursoService: RecursoService, private tiporec: TiporecursoService, private activatedRouter:ActivatedRoute) { }
+    this.duplicado.textContent = "Hello World";
+
+  }
 
   capacitacion: Capacitacion = new Capacitacion();
   sesion:Sesion = new Sesion();
@@ -52,6 +58,13 @@ export class GestionSesionComponent implements OnInit {
   nombre_cap:any;
   descrip_cap:any;
   id_cap:number = 0;
+  validador1:boolean = false;
+
+  cambiable2 = document.getElementById("cambiable2");
+
+  duplicado = document.createElement("p");
+
+  preguntas:Pregunta[]=[];
 
 
   ngOnInit(): void {
@@ -59,6 +72,11 @@ export class GestionSesionComponent implements OnInit {
     this.listarSesion();
     this.listarRecurso();
     this.listarTiposRecurso();
+    
+  }
+
+  ngAfterViewInit() {
+    this.pregunta?.nativeElement.insertAdjacentHTML('beforeend', '<div>Hola</div>');
   }
 
   crearSesion(){
@@ -124,11 +142,11 @@ export class GestionSesionComponent implements OnInit {
     this.fecha_fin.nativeElement.value = '';
   }
 
+  /*
   limpiarRecurso(){
-    this.tipo_rec.nativeElement.value = '';
     this.nombre_rec.nativeElement.value = '';
     this.url_rec.nativeElement.value = '';
-  }
+  }*/
 
   deleteSesion(sesion: Sesion){
     console.log('Delete');
@@ -178,15 +196,17 @@ export class GestionSesionComponent implements OnInit {
     this.recurso.nu_orden=0;
     this.recurso.es_recurso='1';
 
-    this.tiporec.getTiposRec().subscribe(data =>{
-      this.tiporecursos=data;
-    });
+    console.log(this.recurso);
 
         this.recursoService.create(this.recurso).subscribe(
           res=>{
-            this.closebutton3.nativeElement.click()
+            console.log(res);
+            if (res.tipo_recurso.id == 4) {
+              console.log(res.tipo_recurso.id);
+            }
+            this.closebutton3.nativeElement.click();
             this.listarRecurso();
-            this.limpiarRecurso();
+            this.listarTiposRecurso();
           }
         );
 
@@ -231,13 +251,44 @@ export class GestionSesionComponent implements OnInit {
   }
 
   editarRecurso(){
+    console.log(this.recurso_edit);
+
     this.recursoService.update(this.recurso_edit).subscribe(
       res=>{
+        console.log(res);
         this.closebutton4.nativeElement.click()
         this.listarRecurso();
+        this.listarTiposRecurso();
       }
     );
     Swal.fire('Completado', `El recurso ha sido modificado correctamente`, 'success')
   }
+
+  verificarPost(){
+
+  }
+
+  getSelectedValue(event:any) {
+    console.log("; Display: " + event.target[event.target.selectedIndex].text + ".");
+    if (event.target[event.target.selectedIndex].text == 'Evaluación') {
+      this.validador1 = true
+    } else {
+      this.validador1 = false
+    }
+  }
+
+  // Pregunta
+
+  agregarPregunta(){
+
+  }
+
+  crearPregunta(){
+
+  }
+
+
+
+  // Alternativa
 
 }

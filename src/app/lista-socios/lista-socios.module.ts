@@ -7,8 +7,8 @@ import { RecursosModule } from '../recursos/recursos.module';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'socio', component:PageListaSocioComponent},
-  {path: 'sesion', component:ListaSocioDetalleSesionesComponent},
+  {path: 'vista/:id/:idcap', component:PageListaSocioComponent},
+  {path: 'sesion/:idsoc/:idses/:progres', component:ListaSocioDetalleSesionesComponent},
 ];
 
 @NgModule({

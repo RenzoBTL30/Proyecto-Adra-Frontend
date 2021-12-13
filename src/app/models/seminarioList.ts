@@ -3,8 +3,8 @@ export class SeminarioList{
     Nombre:string="";
     Id_ses:number=0;
     Tema:string="";
-    FechaInicio:string="";
-    FechaFin:string="";
+    FechaInicio:Date=new Date();
+    FechaFin:Date=new Date();
     Id_rec:number=0;
     Direccion:string = "";
 }

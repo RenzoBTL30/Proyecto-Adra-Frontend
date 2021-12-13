@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PedidosOracionComponent } from './views/pedidos-oracion/pedidos-oracion.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -8,7 +9,8 @@ import { PedidosOracionComponent } from './views/pedidos-oracion/pedidos-oracion
     PedidosOracionComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     PedidosOracionComponent

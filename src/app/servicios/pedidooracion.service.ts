@@ -5,6 +5,7 @@ import { map, catchError} from 'rxjs/operators';
 import { AuthService } from '../core/presentation/views/login/auth.service';
 import { Injectable } from '@angular/core';
 import { PedidoOracion } from '../models/pedido_oracion';
+import { listarPedidosBancoAsesor } from '../models/listapedidoAsesor';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,16 @@ export class PedidooracionService {
           console.error(e.error.mensaje);
         }
         return throwError(e);
+      }));
+  }
+
+  getlistarPedidosBancoAsesorId(id:number): Observable<listarPedidosBancoAsesor[]>{
+    return this.http.get<listarPedidosBancoAsesor[]>(`${this.url}/listarPedidosBancoAsesor/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+      catchError(e=>{
+        if(e.status != 401 && e.error.mensaje){
+          
+        }
+        return throwError(0);
       }));
   }
 }

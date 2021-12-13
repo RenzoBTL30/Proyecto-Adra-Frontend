@@ -9,11 +9,13 @@ import { GestionModuloComponent } from './componentes-bi/gestion-modulo/views/ge
 import { GestionSeminarioModule } from './componentes-bi/gestion-seminario/gestion-seminario.module';
 import { GestionSeminarioComponent } from './componentes-bi/gestion-seminario/view/gestion-seminario/gestion-seminario.component';
 import { MenuInicioComponent } from './componentes-bi/menu-inicio/view/menu-inicio/menu-inicio.component';
+import { ReporteModule } from './componentes-bi/reporte/reporte.module';
 import { ReporteComponent } from './componentes-bi/reporte/view/reporte/reporte.component';
 import { CoreModule } from './core/core.module';
 import { PageLoginComponent } from './core/presentation/pages/page-login/page-login.component';
 import { HistorialModulosComponent } from './historial-modulos/view/historial-modulos/historial-modulos.component';
 import { PageMenu1Component } from './menu-principal1/presentation/pages/page-menu1/page-menu1.component';
+import { PedidosOracionModule } from './pedidos-oracion/pedidos-oracion.module';
 import { PrincipalModule } from './principal/principal.module';
 import { PrincipalComponent } from './principal/view/principal/principal.component';
 import { PrincipalbiModule } from './principalbi/principalbi.module';
@@ -34,9 +36,9 @@ const routes : Routes = [
       ]
     },
   
-    {path: 'sesion', component:PageSesionComponent},
+    {path: 'sesion/:id', component:PageSesionComponent},
   
-    {path: 'moduloasesor',
+    {path: 'moduloasesor/:id',
       loadChildren: () => import('./modulo-asesor/modulo-asesor.module').then((m) => m.ModuloAsesorModule)},
     
 
@@ -68,6 +70,9 @@ const routes : Routes = [
     GestionAnuncioModule,
     FormsModule,
     AnunciosModule,
+    ReporteModule,
+    SesionesModule,
+    PedidosOracionModule,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]

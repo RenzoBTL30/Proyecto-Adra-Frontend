@@ -1,5 +1,5 @@
 export class Persona{
-    id_persona:number=0;
+    id:number=0;
     no_persona:string="";
     ap_paterno:string="";
     ap_materno:string="";

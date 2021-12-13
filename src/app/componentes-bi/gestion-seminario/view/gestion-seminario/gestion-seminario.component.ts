@@ -108,7 +108,7 @@ export class GestionSeminarioComponent implements OnInit {
         this.recurso.sesion.id = data[data.length-1].id;
 
         //Este campo puede variar en la instancia
-        this.recurso.tipo_recurso.id = 2
+        this.recurso.tipo_recurso.id = 3
         this.recursoService.create(this.recurso).subscribe(
           res=>{
             this.closebutton.nativeElement.click()
