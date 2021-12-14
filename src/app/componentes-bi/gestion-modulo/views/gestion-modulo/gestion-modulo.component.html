@@ -24,7 +24,7 @@
             <ng-container *ngFor="let c of capacitaciones" >
                 <div class="card text-center" style="width: 15rem;" *ngIf="(c.es_capacitacion == '1') && (c.tipo_capacitacion.id == 1)">
                     <a [routerLink]="['/menuprincipal2/modulos/sesiones', c.id]">
-                        <img src="/assets/img/facebook-emp.jpg" class="card-img-top" alt="..">
+                        <img src="https://www.adra.org.pe/sites/default/files/inline-images/vol_te_formamos.png" class="card-img-top" alt="..">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title" style="margin-bottom: 20px;">{{c.no_capacitacion}}</h5>

@@ -4,37 +4,31 @@
         Seminarios en vivo
     </div>
 
-    
-
-    
-        <ng-container *ngFor="let se of seminarios" [ngSwitch]="compararFechas(se.FechaInicio)">
-
+        <ng-container *ngFor="let se of seminarios; let i = index" [ngSwitch]="compararFechas(se.FechaInicio)">
             <div class="reunion" *ngSwitchCase="true">
                 <p>{{se.Nombre}}</p>
                 <div class="link-entrar" #color_cambiar>
-                    <ng-container [ngSwitch]="validador2">
-                        <a (click)="mostrarEncuesta(); obteneridSesion(se.Id_ses, se.Id_cap)" href="{{se.Direccion}}" target="_blank" *ngSwitchDefault>
+                        <a *ngIf="validador2 == 0" (click)="mostrarEncuesta($event); obteneridSesion(se.Id_ses, se.Id_cap)" href="{{se.Direccion}}" target="_blank">
                             <i class="fas fa-video"></i>
                             En vivo, entra ahora
                         </a>
 
-                        <a style="color: white; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" *ngSwitchCase='1'>
+                        <a *ngIf="validador2 == 1" style="color: white; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             <i class="fas fa-video"></i>
                             Encuesta pendiente
                         </a>
 
-                        <a style="color: white;" *ngSwitchCase='2'>
+                        <a *ngIf="validador2 == 2" style="color: white;">
                             <i class="fas fa-video"></i>
                             Encuesta finalizada
                         </a>
-                       
-                    </ng-container>
-                    
+                                           
                 </div>
             </div>
            
 
             <div class="reunion" *ngSwitchCase="false">
+                <p>{{se.Nombre}}</p>
                 <div class="link-pendiente" style="color:white;">
                         <i class="fas fa-video"></i>
                         Comienza el <br> {{se.FechaInicio | date:'dd-MM-yyyy HH:mm:ss'}}

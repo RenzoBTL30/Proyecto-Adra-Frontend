@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/core/presentation/views/login/auth.service';
 import { Afiliacion } from 'src/app/models/afiliacion';
 import { ControlVista } from 'src/app/models/control_vista';
@@ -37,19 +37,18 @@ export class SeminariosComponent implements OnInit {
   sesion_socio:SesionSocio = new SesionSocio();
 
   validador:any;
-  validador2:any;
+  validador2:number = 0;
   validador3:any;
 
-  fechayhora:any
 
   @ViewChild('muysatisfecho') muysatis?: ElementRef;
   @ViewChild('closebutton') closebutton:any;
 
+  @ViewChild('color_cambiar') colorcamb!: ElementRef;
 
-  constructor(private controlService: ControlvistaService,private socioService: SocioService, private afiliacionService: AfiliacionService,private sesionsocioService: SesionsocioService, private authService: AuthService, private capacitacionService: CapacitacionService) {
-    this.fecha = this.hoy.getDate() + '-' + (this.hoy.getMonth() + 1) + this.hoy.getFullYear;
-    this.hora = this.hoy.getHours() + ':' + this.hoy.getMinutes() + ':' + this.hoy.getSeconds();
-    this.fechayhora = this.fecha + ' ' + this.hora;
+
+  constructor(private renderer:Renderer2, private controlService: ControlvistaService,private socioService: SocioService, private afiliacionService: AfiliacionService,private sesionsocioService: SesionsocioService, private authService: AuthService, private capacitacionService: CapacitacionService) {
+    
    }
 
   ngOnInit(): void {
@@ -80,17 +79,23 @@ export class SeminariosComponent implements OnInit {
     }
   }
 
-  mostrarEncuesta(){
+  mostrarEncuesta(event:any){
     setTimeout(() => {
       this.validador2=1;
     }, 5000);
+
 
   }
 
   mostrarEncuestaFinalizada(){
     setTimeout(() => {
+      this.renderer.addClass(this.colorcamb.nativeElement, "link-terminado");
       this.validador2=2;
     }, 2000);
+
+  }
+
+  finalizarEncuesta(){
 
   }
 
@@ -137,6 +142,7 @@ export class SeminariosComponent implements OnInit {
       let result = listSocios.find(x => x.persona.id == id);
 
       this.idsocio = result?.id;
+      console.log("idsocio para buscar valoracion: " + this.idsocio)
 
     });
     
@@ -146,9 +152,11 @@ export class SeminariosComponent implements OnInit {
       let result = this.afiliaciones.find(x => x.socio.id == this.idsocio && x.capacitacion.id == this.idcapac);
 
       this.idafiliacion = result?.id;
-
+      console.log("idafiliacion para valoracion: " + this.idafiliacion)
 
     });
+
+    console.log("idafiliacion para valoracion: " + this.idafiliacion);
 
     this.idsesion = idses;
     this.idcapac = idcap;

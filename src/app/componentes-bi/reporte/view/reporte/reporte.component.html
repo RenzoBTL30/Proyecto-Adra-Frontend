@@ -65,10 +65,10 @@
 
         <div style="margin-top: 25px;">
             <button class="btn btn-primary" (click)="generar()" >Generar</button>
-            <button class="btn btn-primary" style="margin-left: 15px;">Descargar</button>
+            <button class="btn btn-primary" style="margin-left: 15px;" (click)="descargarExcel()" >Descargar</button>
         </div>
 
-        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 1">
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 1" #table1>
             <thead>
                 <tr>
                   <th scope="col" *ngFor="let tit of titulos1; let i = index">{{tit}}</th>
@@ -84,7 +84,7 @@
             </tbody>
         </table>
 
-        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 2">
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 2" #table2>
             <thead>
                 <tr>
                   <th scope="col" *ngFor="let tit of titulos2; let i = index">{{tit}}</th>
@@ -100,7 +100,7 @@
             </tbody>
         </table>
 
-        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 3">
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 3" #table3>
             <thead>
                 <tr>
                   <th scope="col" *ngFor="let tit of titulos3; let i = index">{{tit}}</th>
@@ -118,7 +118,7 @@
             </tbody>
         </table>
 
-        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 4">
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 4" #table4>
             <thead>
                 <tr>
                   <th scope="col" *ngFor="let tit of titulos4">{{tit}}</th>
@@ -135,7 +135,7 @@
             </tbody>
         </table>
 
-        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 5">
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 5" #table5>
             <thead>
                 <tr>
                   <th scope="col" *ngFor="let tit of titulos5">{{tit}}</th>
@@ -154,7 +154,7 @@
             </tbody>
         </table>
 
-        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 6">
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 6" #table6>
             <thead>
                 <tr>
                   <th scope="col" *ngFor="let tit of titulos6; let i = index">{{tit}}</th>

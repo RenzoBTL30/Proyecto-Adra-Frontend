@@ -72,9 +72,6 @@ export class ModuloComponent implements OnInit {
       this.idafiliacion = result?.id;
       this.idcapacitacion = result?.capacitacion.id;
 
-      console.log("idafiliacion: " + this.idafiliacion);
-      console.log(this.idcapacitacion);
-
     });
   }
 
@@ -103,7 +100,6 @@ export class ModuloComponent implements OnInit {
     let idusuario;
     idusuario = payload.idusuario;
     let id = parseInt(idusuario);
-    console.log(id);
 
     this.socioService.getSocios().subscribe(data =>{
       let listSocios = data;
@@ -112,7 +108,6 @@ export class ModuloComponent implements OnInit {
 
       this.idsocio = result?.id;
 
-      console.log(this.idsocio);
     });
   }
 
